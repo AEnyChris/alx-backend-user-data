@@ -5,6 +5,7 @@ import codecs
 from models.user import User
 from typing import TypeVar
 
+
 class BasicAuth(Auth):
     """class for basic authentication"""
     def extract_base64_authorization_header(
@@ -46,9 +47,9 @@ class BasicAuth(Auth):
                     return tuple(res)
         return None, None
 
-    def user_object_from_credentials(self, user_email: str, user_pwd: str) -> TypeVar('User'):
+    def user_object_from_credentials(
+            self, user_email: str, user_pwd: str) -> TypeVar('User'):
         """returns the User instance based on his email and password"""
         if user_email and type(user_email) == str:
             if user_pwd and type(user_pwd) == str:
                 pass
-
