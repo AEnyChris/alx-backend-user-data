@@ -1,0 +1,10 @@
+SimpleAPI/
+__MACOSX/
+basic_auth.zip
+main_*.py
+api/v1/views/__pycache__/*.pyc
+api/v1/auth/__pycache__/*.pyc
+api/v1/__pycache__/*.pyc
+api/__pycache__/*.pyc
+models/__pycache__/*.pyc
+api/v1/auth/auth.bk.py
