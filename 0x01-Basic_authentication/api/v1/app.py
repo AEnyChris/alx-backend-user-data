@@ -24,11 +24,13 @@ def not_found(error) -> str:
     """
     return jsonify({"error": "Not found"}), 404
 
+
 @app.errorhandler(401)
 def unauthorized(error) -> str:
     """ request unauthorized handler
     """
     return jsonify({"error": "Unauthorized"}), 401
+
 
 @app.errorhandler(403)
 def forbidden(error) -> str:
@@ -36,9 +38,14 @@ def forbidden(error) -> str:
     """
     return jsonify({"error": "Forbidden"})
 
+
 @app.before_request
 def handle_before_request():
-    ex_paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+    ex_paths = [
+            '/api/v1/status/',
+            '/api/v1/unauthorized/',
+            '/api/v1/forbidden/'
+            ]
     if auth:
         if auth.require_auth(request.path, ex_paths):
             print(request.path)

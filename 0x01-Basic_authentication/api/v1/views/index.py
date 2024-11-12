@@ -5,6 +5,7 @@ from flask import jsonify, abort
 from api.v1.views import app_views
 from typing import Callable
 
+
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def status() -> str:
     """ GET /api/v1/status
@@ -25,6 +26,7 @@ def stats() -> str:
     stats['users'] = User.count()
     return jsonify(stats)
 
+
 @app_views.route('/unauthorized', strict_slashes=False)
 def unauth() -> None:
     """GET /api/v1/unauthorized
@@ -32,6 +34,7 @@ def unauth() -> None:
       - a 401 error
     """
     abort(401)
+
 
 @app_views.route('/forbidden', strict_slashes=False)
 def forbid() -> None:

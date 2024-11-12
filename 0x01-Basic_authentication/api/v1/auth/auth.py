@@ -3,6 +3,7 @@
 from flask import request
 from typing import List, TypeVar
 
+
 class Auth:
     """class to manage the API authentication."""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
@@ -19,11 +20,11 @@ class Auth:
 
     def authorization_header(self, request=None) -> str:
         """get authorization header"""
-        if request is None or request.headers.get('Authorization') is None:
-            print(f'request.headers.get: {request.headers.get("Authorization")}')
+        header = request.headers.get('Authorization')
+        if request is None or header is None:
             return None
         else:
-            return request.headers.get('Authorization')
+            return header
 
     def current_user(self, request=None) -> TypeVar('User'):
         """get currect user"""
