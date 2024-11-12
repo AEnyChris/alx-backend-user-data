@@ -52,4 +52,13 @@ class BasicAuth(Auth):
         """returns the User instance based on his email and password"""
         if user_email and type(user_email) == str:
             if user_pwd and type(user_pwd) == str:
-                pass
+                User.load_from_file()
+                obj = User.search({'email': user_email})
+                if obj:
+                    if obj[0].is_valid_password(user_pwd):
+                        return obj[0]
+        return None
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """retrieves the User instance for a request"""
+        pass
