@@ -17,7 +17,10 @@ class Auth:
         if not path.endswith('/'):
             path = path + '/'
         for p in excluded_paths:
+            if p.endswith('*'):
+                p = p.rstrip('*') + '.*'
             if re.match(p, path):
+                print(f'p: {p} path: {path}')
                 check = False
         return check
         """
