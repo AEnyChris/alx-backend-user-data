@@ -20,7 +20,6 @@ class Auth:
             if p.endswith('*'):
                 p = p.rstrip('*') + '.*'
             if re.match(p, path):
-                print(f'p: {p} path: {path}')
                 check = False
         return check
         """
