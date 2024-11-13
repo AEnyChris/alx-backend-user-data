@@ -4,6 +4,7 @@ from api.v1.auth.auth import Auth
 import codecs
 from models.user import User
 from typing import TypeVar
+from flask import request
 
 
 class BasicAuth(Auth):
@@ -61,4 +62,8 @@ class BasicAuth(Auth):
 
     def current_user(self, request=None) -> TypeVar('User'):
         """retrieves the User instance for a request"""
-        pass
+        header = self.authorization_header(request)
+        base64_header = self.extract_base64_authorization_header(header)
+        decoded_header = self.decode_base64_authorization_header(base64_header)
+        user_cred = self.extract_user_credentials(decoded_header)
+        return self.user_object_from_credentials(user_cred[0], user_cred[1])
