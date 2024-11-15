@@ -33,7 +33,9 @@ def session_login():
         # session[os.getenv('SESSION_NAME')] = session_id
         return res
 
-@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+
+@app_views.route('/auth_session/logout',
+                 methods=['DELETE'], strict_slashes=False)
 def delete_session():
     """deletes a sesision/logout"""
     from api.v1.app import auth
