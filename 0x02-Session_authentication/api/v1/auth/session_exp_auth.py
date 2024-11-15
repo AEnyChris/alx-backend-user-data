@@ -25,6 +25,23 @@ class SessionExpAuth(SessionAuth):
             self.user_id_by_session_id[session_id] = session_dictionary
         return session_id
 
+    def user_id_for_session_id(self, session_id=None) -> str:
+        """Retrieves the user id of the user associated with
+        a given session id.
+        """
+        if session_id in self.user_id_by_session_id:
+            session_dict = self.user_id_by_session_id[session_id]
+            if self.session_duration <= 0:
+                return session_dict['user_id']
+            if 'created_at' not in session_dict:
+                return None
+            cur_time = datetime.now()
+            time_span = timedelta(seconds=self.session_duration)
+            exp_time = session_dict['created_at'] + time_span
+            if exp_time < cur_time:
+                return None
+            return session_dict['user_id']
+'''
     def user_id_for_session_id(self, session_id=None):
         """returns user id based on session id"""
         if session_id:
@@ -40,3 +57,4 @@ class SessionExpAuth(SessionAuth):
                 if c_at + delta < datetime.now():
                     return None
                 return user
+'''
