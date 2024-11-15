@@ -35,10 +35,8 @@ class SessionExpAuth(SessionAuth):
                 delta = timedelta(seconds=self.session_duration)
                 if self.session_duration <= 0:
                     return user
-                elif not c_at:
+                if not c_at:
                     return None
-                elif c_at + delta < datetime.now():
+                if c_at + delta < datetime.now():
                     return None
-                else:
-                    return user
-        return None
+                return user
