@@ -30,8 +30,11 @@ class SessionDBAuth(SessionExpAuth):
         """destroys the UserSession based on
         the Session ID from the request cookie"""
         session_id = self.session_cookie.get(request)
-        obj_list = User.search({'session_id': session_id})
-        if obj_list:
-            obj_list[0].remove()
-            return True
-        return False
+        try:
+            obj_list = User.search({'session_id': session_id})
+            if obj_list:
+                obj_list[0].remove()
+                return True
+            return False
+        except Exception:
+            return False
