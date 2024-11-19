@@ -34,7 +34,7 @@ class Auth:
             hashpwd = _hash_password(password).decode()
             user = self._db.add_user(email=email, hashed_password=hashpwd)
             return user
-        
+
     def valid_login(self, email: str, password: str) -> bool:
         """validate required user credentials"""
         try:
