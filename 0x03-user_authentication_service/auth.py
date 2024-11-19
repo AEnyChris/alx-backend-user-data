@@ -23,14 +23,14 @@ class Auth:
     def __init__(self):
         """initializer"""
         self._db = DB()
- 
+
     def register_user(self, email: str, password: str) -> User:
         """registers a user with the given email and password"""
         try:
-            user = self._db.find_user_by(email = email)
+            user = self._db.find_user_by(email=email)
             if user:
                 raise ValueError(f'User {email} already exists')
         except NoResultFound:
-            hashpwd = _hash_password(password)
-            user = self._db.add_user(email=email, hashed_password=hashpwd.decode())
+            hashpwd = _hash_password(password).decode()
+            user = self._db.add_user(email=email, hashed_password=hashpwd)
             return user
