@@ -2,6 +2,7 @@
 """authentication module"""
 import uuid
 import bcrypt
+from typing import Union
 from db import DB
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
@@ -67,3 +68,13 @@ class Auth:
             return session_id
         except Exception:
             pass
+
+    def get_user_by_session_id(self, session_id: str) -> Union[User, None]:
+        """returns the user for a given session"""
+        if session_id:
+            try:
+                user = self._db.find_user_by(session_id=session_id)
+                return user
+            except Exception:
+                return None
+        None
