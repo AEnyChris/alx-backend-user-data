@@ -69,7 +69,7 @@ class Auth:
         except Exception:
             pass
 
-    def get_user_by_session_id(self, session_id: str) -> Union[User, None]:
+    def get_user_from_session_id(self, session_id: str) -> Union[User, None]:
         """returns the user for a given session"""
         if session_id:
             try:
