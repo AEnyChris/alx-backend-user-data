@@ -45,14 +45,14 @@ def login():
 def logout():
     """logout user endpoint"""
     session_id = request.cookies.get('session_id')
-    print(f'session_id: {session_id}')
+    # print(f'session_id: {session_id}')
     if session_id:
         print('I got a session_id')
         user = AUTH.get_user_from_session_id(session_id)
         if user:
             AUTH.destroy_session(user.id)
             return redirect(url_for('index', method='GET'))
-    print(f'Oops I no session_id or user. Session id = {session_id}')
+    # print(f'Oops I no session_id or user. Session id = {session_id}')
     abort(403)
 
 
